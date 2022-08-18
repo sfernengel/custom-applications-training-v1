@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
-import Text from "@commercetools-uikit/text";
-import { GRAPHQL_TARGETS } from "@commercetools-frontend/constants";
-import { fetchShoppingLists } from "./queries.graphql";
-import {
-    createShoppingList,
-    deleteShoppingList,
-    updateShoppingListName,
-} from "./mutations.graphql";
+import React, { useState } from "react";
+import { useQuery, useMutation } from "@apollo/client/react";
+import { useFormik } from "formik";
+
 import DataTableManager from "@commercetools-uikit/data-table-manager";
 import DataTable from "@commercetools-uikit/data-table";
-import PrimaryButton from "@commercetools-uikit/primary-button";
 import { FormModalPage } from "@commercetools-frontend/application-components";
+import IconButton from "@commercetools-uikit/icon-button";
+import {
+    CheckInactiveIcon,
+    EditIcon,
+    CheckBoldIcon,
+} from "@commercetools-uikit/icons";
+import PrimaryButton from "@commercetools-uikit/primary-button";
 import Spacings from "@commercetools-uikit/spacings";
+import Text from "@commercetools-uikit/text";
 import TextField from "@commercetools-uikit/text-field";
 import TextInput from "@commercetools-uikit/text-input";
 
@@ -19,19 +21,22 @@ import {
     useShowApiErrorNotification,
     useShowNotification,
 } from "@commercetools-frontend/actions-global";
+
 import { DOMAINS } from "@commercetools-frontend/constants";
-import { useFormik } from "formik";
 
-import { useQuery, useMutation } from "@apollo/client/react";
 
-import IconButton from "@commercetools-uikit/icon-button";
+import { GRAPHQL_TARGETS } from "@commercetools-frontend/constants";
+import { fetchShoppingLists } from "./queries.graphql";
 import {
-    CheckInactiveIcon,
-    EditIcon,
-    CheckBoldIcon,
-} from "@commercetools-uikit/icons";
+    createShoppingList,
+    deleteShoppingList,
+    updateShoppingListName,
+} from "./mutations.graphql";
 
 const target = GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM;
+
+
+
 
 const ShoppingLists = () => {
     const [formVisibility, setFormVisibility] = useState(false);
@@ -164,42 +169,42 @@ const ShoppingLists = () => {
             },
         },
     ];
-    const formik = useFormik({
-        initialValues: {
-            locale: "",
-            name: "",
-        },
-        onSubmit: (values, { resetForm }) => {
-            handleSubmit(values);
-            resetForm({});
-        },
-        validateOnChange: false,
-        validateOnBlur: false,
-    });
+    // const formik = useFormik({
+    //     initialValues: {
+    //         locale: "",
+    //         name: "",
+    //     },
+    //     onSubmit: (values, { resetForm }) => {
+    //         handleSubmit(values);
+    //         resetForm({});
+    //     },
+    //     validateOnChange: false,
+    //     validateOnBlur: false,
+    // });
 
-    const handleSubmit = async (formValues) => {
-        const { error } = await saveShoppingList({
-            variables: {
-                locale: formValues.locale,
-                value: formValues.name,
-            },
-            context: { target },
-        });
-        if (error) showApiErrorNotification({ error: error });
-        setFormVisibility(false);
-        showSuccessNotification({
-            kind: "success",
-            domain: DOMAINS.SIDE,
-            text: "Shopping List added Successfully",
-        });
-    };
+    // const handleSubmit = async (formValues) => {
+    //     const { error } = await saveShoppingList({
+    //         variables: {
+    //             locale: formValues.locale,
+    //             value: formValues.name,
+    //         },
+    //         context: { target },
+    //     });
+    //     if (error) showApiErrorNotification({ error: error });
+    //     setFormVisibility(false);
+    //     showSuccessNotification({
+    //         kind: "success",
+    //         domain: DOMAINS.SIDE,
+    //         text: "Shopping List added Successfully",
+    //     });
+    // };
 
     if (loading) return "Loading...";
     if (error) return `---Error! ${error.message}`;
 
     return (
         <React.Fragment>
-            <FormModalPage
+            {/* <FormModalPage
                 title="Add Shopping List"
                 isOpen={formVisibility}
                 onClose={() => setFormVisibility(false)}
@@ -227,13 +232,13 @@ const ShoppingLists = () => {
                         />
                     </Spacings.Inline>
                 </form>
-            </FormModalPage>
-            <Spacings.Inline>
+            </FormModalPage> */}
+            {/* <Spacings.Inline>
                 <PrimaryButton
                     label="Add Shopping List"
                     onClick={() => setFormVisibility(true)}
                 />
-            </Spacings.Inline>
+            </Spacings.Inline> */}
             <DataTableManager columns={cols}>
                 <DataTable rows={data?.shoppingLists?.results} />
             </DataTableManager>
