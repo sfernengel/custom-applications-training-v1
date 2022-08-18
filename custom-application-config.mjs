@@ -19,8 +19,8 @@ const config = {
   },
 
   oAuthScopes: {
-    view: ['view_products'],
-    manage: ['manage_products'],
+    view: ['view_products', 'view_shopping_lists'],
+    manage: ['manage_products', 'manage_shopping_lists'],
   },
 
   icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
@@ -34,6 +34,12 @@ const config = {
     {
       uriPath: 'channels',
       defaultLabel: 'Channels',
+      labelAllLocales: [],
+      permissions: [PERMISSIONS.View],
+    },
+    {
+      uriPath: 'shopping-lists',
+      defaultLabel: 'Shopping Lists',
       labelAllLocales: [],
       permissions: [PERMISSIONS.View],
     },

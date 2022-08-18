@@ -37,6 +37,7 @@
     "@commercetools-test-data/core": "3.1.2",
     "@commercetools-uikit/constraints": "^15.1.0",
     "@commercetools-uikit/data-table": "^15.1.0",
+    "@commercetools-uikit/data-table-manager": "^15.2.0",
     "@commercetools-uikit/flat-button": "^15.1.0",
     "@commercetools-uikit/grid": "^15.1.0",
     "@commercetools-uikit/hooks": "^15.1.0",
