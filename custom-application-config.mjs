@@ -39,7 +39,13 @@ const config = {
     },
     {
       uriPath: 'shopping-lists',
-      defaultLabel: 'Shopping Lists',
+      defaultLabel: 'Shopping lists',
+      labelAllLocales: [],
+      permissions: [PERMISSIONS.View],
+    },
+    {
+      uriPath: 'add-shopping-list',
+      defaultLabel: 'Add a shopping list',
       labelAllLocales: [],
       permissions: [PERMISSIONS.View],
     },

@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client/react";
-import { useFormik } from "formik";
 
 import DataTableManager from "@commercetools-uikit/data-table-manager";
 import DataTable from "@commercetools-uikit/data-table";
-import { FormModalPage } from "@commercetools-frontend/application-components";
 import IconButton from "@commercetools-uikit/icon-button";
 import {
     CheckInactiveIcon,
     EditIcon,
     CheckBoldIcon,
 } from "@commercetools-uikit/icons";
-import PrimaryButton from "@commercetools-uikit/primary-button";
-import Spacings from "@commercetools-uikit/spacings";
-import Text from "@commercetools-uikit/text";
-import TextField from "@commercetools-uikit/text-field";
 import TextInput from "@commercetools-uikit/text-input";
 
 import {
@@ -28,7 +22,6 @@ import { DOMAINS } from "@commercetools-frontend/constants";
 import { GRAPHQL_TARGETS } from "@commercetools-frontend/constants";
 import { fetchShoppingLists } from "./queries.graphql";
 import {
-    createShoppingList,
     deleteShoppingList,
     updateShoppingListName,
 } from "./mutations.graphql";
@@ -39,7 +32,6 @@ const target = GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM;
 
 
 const ShoppingLists = () => {
-    const [formVisibility, setFormVisibility] = useState(false);
     const [updateVisibility, setUpdateVisibility] = useState({
         status: false,
         rowId: "",
@@ -55,7 +47,6 @@ const ShoppingLists = () => {
         // Then re-run
         refetchQueries: [{ query: fetchShoppingLists, context: { target } }],
     };
-    const [saveShoppingList] = useMutation(createShoppingList, refetch);
     const [updateShoppingList] = useMutation(updateShoppingListName, refetch);
     const [delShoppingList] = useMutation(deleteShoppingList, refetch);
     const cols = [
@@ -169,76 +160,12 @@ const ShoppingLists = () => {
             },
         },
     ];
-    // const formik = useFormik({
-    //     initialValues: {
-    //         locale: "",
-    //         name: "",
-    //     },
-    //     onSubmit: (values, { resetForm }) => {
-    //         handleSubmit(values);
-    //         resetForm({});
-    //     },
-    //     validateOnChange: false,
-    //     validateOnBlur: false,
-    // });
-
-    // const handleSubmit = async (formValues) => {
-    //     const { error } = await saveShoppingList({
-    //         variables: {
-    //             locale: formValues.locale,
-    //             value: formValues.name,
-    //         },
-    //         context: { target },
-    //     });
-    //     if (error) showApiErrorNotification({ error: error });
-    //     setFormVisibility(false);
-    //     showSuccessNotification({
-    //         kind: "success",
-    //         domain: DOMAINS.SIDE,
-    //         text: "Shopping List added Successfully",
-    //     });
-    // };
 
     if (loading) return "Loading...";
     if (error) return `---Error! ${error.message}`;
 
     return (
         <React.Fragment>
-            {/* <FormModalPage
-                title="Add Shopping List"
-                isOpen={formVisibility}
-                onClose={() => setFormVisibility(false)}
-                subtitle={
-                    <Text.Body>{"Add a Shopping list to your project"}</Text.Body>
-                }
-                topBarCurrentPathLabel="Add Shopping List"
-                topBarPreviousPathLabel="Back"
-                onSecondaryButtonClick={() => setFormVisibility(false)}
-                onPrimaryButtonClick={formik.handleSubmit}
-            >
-                <form onSubmit={formik.handleSubmit}>
-                    <Spacings.Inline>
-                        <TextField
-                            id="locale"
-                            title="Locale"
-                            value={formik.values.locale}
-                            onChange={formik.handleChange}
-                        />
-                        <TextField
-                            id="name"
-                            title="Name"
-                            value={formik.values.name}
-                            onChange={formik.handleChange}
-                        />
-                    </Spacings.Inline>
-                </form>
-            </FormModalPage> */}
-            {/* <Spacings.Inline>
-                <PrimaryButton
-                    label="Add Shopping List"
-                    onClick={() => setFormVisibility(true)}
-                />
-            </Spacings.Inline> */}
             <DataTableManager columns={cols}>
                 <DataTable rows={data?.shoppingLists?.results} />
             </DataTableManager>
