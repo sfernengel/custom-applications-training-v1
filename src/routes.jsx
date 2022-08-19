@@ -3,7 +3,8 @@ import Spacings from '@commercetools-uikit/spacings';
 import Channels from './components/channels';
 import Welcome from './components/welcome';
 import ShoppingLists from './components/shopping-lists';
-import AddShoppingList from './components/add-shopping-list'
+import AddShoppingList from './components/add-shopping-list';
+import ExternalAPI from './components/external-api';
 
 const ApplicationRoutes = () => {
   const match = useRouteMatch();
@@ -26,10 +27,13 @@ const ApplicationRoutes = () => {
           <Channels linkToWelcome={match.url} />
         </Route>
         <Route path={`${match.path}/shopping-lists`}>
-          <ShoppingLists linkToWelcome={match.url} />
+          <ShoppingLists />
         </Route>
         <Route path={`${match.path}/add-shopping-list`}>
           <AddShoppingList linkToShoppingLists={`${match.url}/shopping-lists`} />
+        </Route>
+        <Route path={`${match.path}/external-api`}>
+          <ExternalAPI />
         </Route>
         <Route>
           <Welcome />

@@ -2091,7 +2091,7 @@
     prop-types "15.8.1"
     react-intl "^5.24.6"
 
-"@commercetools-uikit/notifications@^15.1.0":
+"@commercetools-uikit/notifications@^15.1.0", "@commercetools-uikit/notifications@^15.2.0":
   version "15.2.0"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/notifications/-/notifications-15.2.0.tgz#749d47fa6528d720465c777b5c688bd5b616e96a"
   integrity sha512-MeSPbMiDKuQ2VfOon4PHLVfzevAr7sYLkugQroK74jIdhYxHu7RVMniBk0kfqdge67EZpfLC90KCrwtDUzVpNg==

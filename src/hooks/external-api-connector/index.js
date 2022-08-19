@@ -1,0 +1,1 @@
+export { useExternalAPI } from './use-external-api-connector';
