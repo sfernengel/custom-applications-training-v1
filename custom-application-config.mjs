@@ -14,7 +14,7 @@ const config = {
 
     production: {
       applicationId: 'TODO',
-      url: 'https://your_app_hostname.com',
+      url: 'https://custom-app-sevtap.vercel.app',
     },
   },
 
@@ -25,7 +25,7 @@ const config = {
 
   icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
   mainMenuLink: {
-    defaultLabel: 'Template starter',
+    defaultLabel: 'Custom Application 0902',
     labelAllLocales: [],
     permissions: [PERMISSIONS.View],
   },

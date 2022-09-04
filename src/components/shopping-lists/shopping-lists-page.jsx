@@ -53,12 +53,12 @@ const ShoppingLists = () => {
         {
             key: "id",
             label: "id",
-            renderItem: (row) => (row?.id ? row.id : ""),
+            renderItem: (row) => (row?.id ?? ""),
         },
         {
             key: "version",
             label: "version",
-            renderItem: (row) => (row?.version ? row.version : ""),
+            renderItem: (row) => (row?.version ?? ""),
         },
         {
             key: "name",
@@ -77,17 +77,16 @@ const ShoppingLists = () => {
                         />
                     );
 
-                return row?.nameAllLocales ? row?.nameAllLocales[0]?.value : "";
+                // return row?.nameAllLocales ? row?.nameAllLocales[0]?.value : "";
+                return row?.nameAllLocales?.[0].value ?? "";
             },
         },
         {
             key: "actions",
             label: "Actions",
             renderItem: (row) => {
-                const version = row.version;
-                const id = row.id;
-                const name = row?.nameAllLocales[0]?.value;
-                const locale = row?.nameAllLocales[0]?.locale;
+                const { version, id, nameAllLocales: [{ value: name, locale }] } = row;
+
                 return (
                     <React.Fragment>
                         <IconButton
